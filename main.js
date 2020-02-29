@@ -11,12 +11,10 @@ tableCellArray.forEach(item => {
         count++
         const winner = isWinner(sign)
         if (winner) {
-            setWinnerMessage(sign)
+            setWinnerMessage(sign," is winner")
         }
         if (!winner && count === 9) {
-            setTimeout(() => {
-                alert("it's draw")
-            }, 100);
+            setWinnerMessage("It's draw"," play again")
         }
     })
 })
@@ -54,8 +52,8 @@ function isWinner(sign) {
     }
 }
 
-function setWinnerMessage(sign) {
-    winnerCont.innerHTML = `${sign} is winner`
+function setWinnerMessage(sign,message) {
+    winnerCont.innerHTML = sign + message
 }
 
 const hasSign = (index, sign) =>
