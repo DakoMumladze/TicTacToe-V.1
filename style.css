@@ -1,14 +1,27 @@
+body {
+    background-color: #FCF7F8;
+    font-family: 'Roboto';
+}
 table{
-    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
 }
 td{
-    border: 1px solid rebeccapurple;
+    border: 1.4px solid #000;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, .7);
     width: 100px;
     height: 100px;
     text-align: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
 }
 .winner-text {
     text-align: center;
-    color: rebeccapurple;
+    color: #000;
+    text-transform: uppercase;
 }
