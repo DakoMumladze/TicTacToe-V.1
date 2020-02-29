@@ -38,7 +38,4 @@ function checkWinner(sign) {
     else if(tableCellArray[2].innerHTML === sign && tableCellArray[4].innerHTML === sign && tableCellArray[6].innerHTML === sign) {
         return winnerCont.innerHTML = `${sign} is winner`
     }
-    else {
-        return winnerCont.innerHTML = "Draw"
-    }
 }
