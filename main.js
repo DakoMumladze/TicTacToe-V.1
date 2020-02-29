@@ -6,36 +6,60 @@ let count = 0
 
 tableCellArray.forEach(item => {
     item.addEventListener('click',() => {
-        console.log(item, count, 444)
         const sign = (count % 2 === 0) ? first : second
         item.innerHTML = sign
         count++
-        checkWinner(sign)
+        const winner = isWinner(sign)
+        if (winner) {
+            setWinnerMessage(sign)
+        }
+        if (!winner && count === 9) {
+            setTimeout(() => {
+                alert("it's draw")
+            }, 100);
+        }
     })
 })
-function checkWinner(sign) {
-    if(tableCellArray[0].innerHTML === sign && tableCellArray[1].innerHTML === sign && tableCellArray[2].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+
+const smartCheck = (sign) =>
+    (index1, index2, index3) =>
+        hasSigns(index1, index2, index3, sign)
+
+function isWinner(sign) {
+    const check = smartCheck(sign)
+
+    if(check(0, 1, 2)) {
+        return true
     }
-    else if(tableCellArray[3].innerHTML === sign && tableCellArray[4].innerHTML === sign && tableCellArray[5].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(3, 4, 5)) {
+        return true
     }
-    else if(tableCellArray[6].innerHTML === sign && tableCellArray[7].innerHTML === sign && tableCellArray[8].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(6, 7, 8)) {
+        return true
     }
-    else if(tableCellArray[0].innerHTML === sign && tableCellArray[3].innerHTML === sign && tableCellArray[6].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(0, 3, 6)) {
+        return true
     }
-    else if(tableCellArray[1].innerHTML === sign && tableCellArray[4].innerHTML === sign && tableCellArray[7].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(1, 4, 7)) {
+        return true
     }
-    else if(tableCellArray[2].innerHTML === sign && tableCellArray[5].innerHTML === sign && tableCellArray[8].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(2, 5, 8)) {
+        return true
     }
-    else if(tableCellArray[0].innerHTML === sign && tableCellArray[4].innerHTML === sign && tableCellArray[8].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(0, 4, 8)) {
+        return true
     }
-    else if(tableCellArray[2].innerHTML === sign && tableCellArray[4].innerHTML === sign && tableCellArray[6].innerHTML === sign) {
-        return winnerCont.innerHTML = `${sign} is winner`
+    else if(check(2, 4, 6)) {
+        return true
     }
 }
+
+function setWinnerMessage(sign) {
+    winnerCont.innerHTML = `${sign} is winner`
+}
+
+const hasSign = (index, sign) =>
+    tableCellArray[index].innerHTML === sign
+
+const hasSigns = (index1, index2, index3, sign) =>
+    hasSign(index1, sign) && hasSign(index2, sign) && hasSign(index3, sign)
