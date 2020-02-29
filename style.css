@@ -8,3 +8,7 @@ td{
     height: 100px;
     text-align: center;
 }
+.winner-text {
+    text-align: center;
+    color: rebeccapurple;
+}
